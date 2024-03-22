@@ -1,0 +1,73 @@
+#:import MusicStaff lesson_screen.MusicStaff
+#:import KeyboardButton lesson_screen.KeyboardButton
+#:import KeyBoardLayout lesson_screen.KeyBoardLayout
+
+KeyBoardLayout
+<LessonScreen>
+    size_hint: (1,1)
+    RelativeLayout:
+        size_hint : .78,.06
+        pos_hint: {'x': 0.12,"top": 0.99}
+        MDProgressBar:
+            id:lesson_progress
+            size:(100,2)
+            max:30
+            value:0
+    RelativeLayout:
+        GridLayout:
+            rows:3
+            cols:1
+            #orientation: "vertical"
+            size_hint : 1,1
+            SRLabel:
+                size_hint : 0.03,0.3
+            MusicStaff:
+                id: staff
+                note_value : "C"
+                pos_hint : {"top": 0}
+                opacity : 0
+            Keyboard:
+                id: mykeyboard
+                opacity : 0
+    FloatLayout:
+        Image:
+            size_hint: (0.3,0.3)
+            #size: (600, 600)
+            pos_hint: {'x': 0.6, 'y': 0.5}
+            id: gif
+            source: 'Boy.gif'
+            allow_stretch: False
+            fit_mode: 'contain'
+            anim_delay: 0
+            anim_loop: 2
+            opacity : 0
+        SRLabel:
+            id: dialogue
+            pos_hint: {'x': 0.14, 'top': 1}
+            text:'[color=#10FF05][size=32]Middle C[/size][/color] is an important reference point in music notation.\n It is the C note located near the center of the keyboard.'
+            size: (12,12)
+            font_size: 20
+            color: 0, 0, 0, 1
+            opacity : 0
+
+
+<SRLabel@Label>
+    font_name: "littledays"
+    markup: True  # Enable markup for the Label
+
+<Button>
+    font_name: "littledays"
+
+<Keyboard>:
+    padding: ("3dp","3dp","3dp","3dp")
+    #pos_hint : {"top":0}
+    orientation: "vertical"
+    RedBox:
+        size_hint_y : 0.1
+    KeyBoardLayout:
+        id: keyboard_layout
+
+<KeyBoardLayout>
+    #height : "250dp"
+    size_hint_y: None
+    orientation: "horizontal"

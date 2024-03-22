@@ -1,0 +1,495 @@
+#:import MusicStaff SightReader.MusicStaff
+#:import MusicStaff SightReaderTimer.MusicStaffTimer
+#:import MusicStaffReview SightReaderEndReview.MusicStaffReview
+
+<SightReaderMenuScreen>
+
+
+<SightReaderScreen>
+	name: 'sight_reader'
+    RelativeLayout:
+        id: root_widget_1
+        GridLayout:
+            id: root_widget_2
+            rows:3
+            cols:1
+            #orientation: "vertical"
+            size_hint : 1,1
+            SRLabel:
+                size_hint : 0.03,0.3
+            MusicStaff:
+                id:staff
+                note_value : "C"
+                pos_hint : {"top": 0}
+            #KeyBoardScrollView:
+            Keyboard:
+    RelativeLayout:
+        id: home_button
+        height: '50dp'  # Adjust the height as needed
+        #MDFillRoundFlatIconButton:
+            #icon: "home-circle"
+            #text: 'Home'
+            #size_hint_y: 0.04
+            #size_hint_x: 0.25
+            #pos_hint: {"x": 0.1, "top": 0.98}
+            ##md_bg_color : (0.8, 0.9, 0.0, 0.4)
+            #on_release: root.go_to_menu()
+
+        MDIconButton:
+            icon: "home-circle"
+            style: "filled"
+            style: "tonal"
+            theme_bg_color: "Custom"
+            md_bg_color:  "FF69B4"
+            theme_icon_color: "Custom"
+            icon_color: "white"
+            #size_hint_y: 0.04
+            #size_hint_x: 0.1
+            pos_hint: {"x": 0.9, "top": 0.98}
+            #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+            on_release: root.go_to_menu()
+
+<SightReaderTimerScreen>
+    name: "sight_reader_timer"
+    RelativeLayout:
+        id: root_widget_1
+        GridLayout:
+            id: root_widget_2
+            rows:3
+            cols:1
+            #orientation: "vertical"
+            size_hint : 1,1
+            SRLabel:
+                size_hint : 0.03,0.3
+            MusicStaffTimer:
+                id: staff
+                note_value : "C"
+                pos_hint : {"top": 0}
+            #KeyBoardScrollView:
+            KeyboardTimer:
+    RelativeLayout:
+        id: home_button
+        height: '50dp'  # Adjust the height as needed
+        #MDFillRoundFlatIconButton:
+            #icon: "home-circle"
+            #text: 'Home'
+            #size_hint_y: 0.04
+            #size_hint_x: 0.4
+            #pos_hint: {"x": 0.1, "top": 0.98}
+            ##md_bg_color : (0.8, 0.9, 0.0, 0.4)
+            #on_release: root.go_to_menu()
+        MDIconButton:
+            icon: "home-circle"
+            style: "filled"
+            style: "tonal"
+            theme_bg_color: "Custom"
+            md_bg_color: "FF69B4"
+            theme_icon_color: "Custom"
+            icon_color: "white"
+            #size_hint_y: 0.04
+            #size_hint_x: 0.1
+            pos_hint: {"x": 0.05, "top": 0.98}
+            #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+            on_release: root.go_to_menu()
+        Label:
+            id: timer_label
+            size_hint: (0.1,0.1)
+            color: "EC5578"
+            text: ''
+            #font_name: "fonts/Little days.ttf"
+            pos_hint: {"x": 0.8, "y": 0.85}
+            font_size: '48sp'
+        Label:
+            id: score
+            size_hint: (0.1,0.1)
+            color:  0, 0, 0, 1
+            text: ''
+            #text: '[color=ff3333]Hello[/color][color=3333ff]World[/color]'
+            font_name: "fonts/Roboto-Condensed.ttf"
+            pos_hint: {"x": 0.2, "y": 0.85}
+            font_size: '48sp'
+            markup:True
+
+        StyledLabel:
+            id: game_over_button
+            size_hint: (1, 1)  # Take the size of the entire widget
+            pos_hint: {'x': 0, 'y': 0}  # Align with the bottom-left corner
+            text: "Time up"
+            color:"black"
+            font_size: "60sp"
+            #font_name: "fonts/Roboto-Condensed.ttf"
+            font_name: "littledays"
+            opacity: 0  # Initially invisible
+            markup:True
+            # Add any other properties or bindings as needed
+
+
+<EndScreen>
+    BoxLayout:
+        spacing: 20  # Adjust the spacing between cells
+        padding: 5, 5, 5, 5  # Adjust the padding around the entire grid
+        orientation: 'vertical'
+        size_hint_y: 1
+        size_hint_x: 1
+        pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+        SRLabel:
+            text: ''
+        SRLabel:
+            id: result_motivation
+            text: 'Great Job!!!!'
+            font_name: "littledays"
+            font_size: '30sp'
+        GridLayout:
+            spacing: 20  # Adjust the spacing between cells
+            padding: 10  # Adjust the padding around the entire grid
+            size_hint_y: .95
+            size_hint_x: .95
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            rows: 3
+            cols: 2
+            SRLabel:
+                text: "Correct answers"
+            SRLabel:
+                id: correct_answers
+                text: ""
+            SRLabel:
+                text: "Incorrect answers"
+            SRLabel:
+                id:wrong_answers
+                text: ""
+            MDRectangleFlatIconButton:
+                icon: "home-circle"
+                text: 'Home'
+                #size_hint_y: 0.04
+                size_hint_x: 0.12
+                #pos_hint: {"x": 0.1, "top": 0.98}
+                #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+                on_release: root.go_to_menu()
+                text_color: "FF69B4"
+            MDRectangleFlatIconButton:
+                icon: "replay"
+                text: 'Play Again'
+                #size_hint_y: 0.04
+                size_hint_x: 0.12
+                #pos_hint: {"x": 0.1, "top": 0.98}
+                #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+                on_release: root.play_again()
+                text_color: "FF69B4"
+        MDRectangleFlatIconButton:
+            icon: "home-circle"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            text: 'Review Questions'
+            size_hint_x: 0.30
+            on_release: root.go_to_review_screen()
+            text_color: "FF69B4"
+
+<EndScreenTimer>
+    BoxLayout:
+        #spacing: 20  # Adjust the spacing between cells
+        #padding: 5, 5, 5, 5  # Adjust the padding around the entire grid
+        orientation: 'vertical'
+        size_hint_y: 1
+        size_hint_x: .95
+        pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+        SRLabel:
+            text: ''
+            #size_hint_y: .05
+        SRLabel:
+            id: result_motivation
+            text: 'Great Job!!!!'
+            font_size: '20sp'
+            size_hint_y: .08
+        SRLabel:
+            id: comments
+            text: ""
+            markup: True
+            font_size: '20sp'
+        GridLayout:
+            spacing: 20  # Adjust the spacing between cells
+            padding: 10  # Adjust the padding around the entire grid
+            size_hint_y: .9
+            size_hint_x: .85
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            rows: 4
+            cols: 2
+            SRLabel:
+                text: "Score:"
+            SRLabel:
+                id: total_score
+                text: ""
+
+            SRLabel:
+                text: "High Score:"
+            SRLabel:
+                id: high_score
+                text: ""
+            SRLabel:
+                text: "Correct answers:"
+            SRLabel:
+                id: correct_answers
+                text: ""
+            MDRectangleFlatIconButton:
+                icon: "home-circle"
+                text: 'Home'
+                #size_hint_y: 0.04
+                size_hint_x: 0.12
+                #pos_hint: {"x": 0.1, "top": 0.98}
+                #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+                on_release: root.go_to_menu()
+                text_color: "FF69B4"
+            MDRectangleFlatIconButton:
+                icon: "replay"
+                text: 'Play Again'
+                #size_hint_y: 0.04
+                size_hint_x: 0.12
+                #pos_hint: {"x": 0.1, "top": 0.98}
+                #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+                on_release: root.play_again()
+                text_color: "FF69B4"
+
+<SightReaderEndReviewScreen>
+    RelativeLayout:
+        id: root_widget_1
+        GridLayout:
+            id: root_widget_2
+            rows:3
+            cols:1
+            #orientation: "vertical"
+            size_hint : 1,1
+            SRLabel:
+                size_hint : 0.03,0.3
+            MusicStaffReview:
+                id: staff_review
+                note_value : "C"
+                pos_hint : {"top": 0}
+            Keyboard
+            #SRLabel:
+                #size_hint : 0.1,0.1
+    RelativeLayout:
+        id: home_button
+        height: '50dp'  # Adjust the height as needed
+        #MDFillRoundFlatIconButton:
+            #icon: "home-circle"
+            #text: 'Home'
+            #size_hint_y: 0.04
+            #size_hint_x: 0.3
+            #pos_hint: {"x": 0.1, "top": 0.98}
+            ##md_bg_color : (0.8, 0.9, 0.0, 0.4)
+            #on_release: root.go_to_menu()
+        MDIconButton:
+            icon: "home-circle"
+            style: "filled"
+            style: "tonal"
+            theme_bg_color: "Custom"
+            #md_bg_color:  0.6, 0.1, 0.2, 1
+            md_bg_color:  "cyan"
+            theme_icon_color: "Custom"
+            icon_color: "black"
+            #size_hint_y: 0.04
+            #size_hint_x: 0.1
+            pos_hint: {"x": 0.90, "top": 0.98}
+            #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+            on_release: root.go_to_menu()
+
+    #RelativeLayout:
+        #id: home_button
+        #height: '50dp'  # Adjust the height as needed
+        #MDFillRoundFlatIconButton:
+            #icon: "home-circle"
+            #text: 'Back'
+            #size_hint_y: 0.04
+            #size_hint_x: 0.3
+            #pos_hint: {"x": 0.6, "top": 0.98}
+            ##md_bg_color : (0.8, 0.9, 0.0, 0.4)
+            md_bg_color : "FF69B4"
+            #on_release: root.go_to_menu()
+    RelativeLayout:
+        height: '50dp'
+        MDFillRoundFlatIconButton:
+            id: prev_review
+            icon: "arrow-left-bold"
+            text: 'Prev'
+            size_hint_y: 0.04
+            size_hint_x: 0.2
+            pos_hint: {"x": 0.1, "top": 0.2}
+            #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+            on_release: root.show_prev_set()
+        MDFillRoundFlatIconButton:
+            id: next_review
+            icon: "forward"
+            text: 'Next'
+            size_hint_y: 0.04
+            size_hint_x: 0.2
+            pos_hint: {"x": 0.7, "top": 0.2}
+            #md_bg_color : "FF69B4"
+            on_release: root.show_next_set()
+
+<KeyboardButton>
+    #on_press: app.on_button_click(self)
+    on_release: self.wobble()
+
+<KeyBoardScrollView@ScrollView>
+    Keyboard:
+        id: keyboard_scroll_layout
+        size_hint:None,3
+        width: 1000
+
+
+<Keyboard>:
+    padding: ("3dp","3dp","3dp","3dp")
+    #pos_hint : {"top":0}
+    orientation: "vertical"
+    RedBox:
+        size_hint_y : 0.1
+    KeyBoardLayout:
+
+<KeyboardTimer>:
+    padding: ("3dp","3dp","3dp","3dp")
+    #pos_hint : {"top":0}
+    size_hint :(1,1)
+    orientation: "vertical"
+    RedBox:
+        size_hint_y : 0.1
+    KeyBoardLayoutTimer:
+
+
+<KeyBoardLayoutMenu>
+    id: keyboard_layout
+    size_hint_y: None
+    orientation: "horizontal"
+
+<KeyBoardLayout>
+    id: keyboard_layout
+    #height : "250dp"
+    size_hint_y: None
+    orientation: "horizontal"
+
+<KeyBoardLayoutTimer>
+    id: keyboard_layout_timer
+    #height : "250dp"
+    size_hint_y: None
+    orientation: "horizontal"
+
+<KeyBoardLayout2@RelativeLayout>:
+    id: keyboard_layout2
+    height : "50dp"
+    #size_hint_y: None
+    orientation: "horizontal"
+    Button:
+        size_hint_x: .12
+        pos_hint: {"x":0}
+        background_normal: 'images/white_key_2.png'
+
+    Button:
+        size_hint_x: .12
+        pos_hint: {"x":.12}
+        background_normal: 'images/white_key_2.png'
+        #border: (10,10,10,10)
+    Button:
+        size_hint_x: .12
+        pos_hint: {"x":.24}
+        background_normal: 'images/white_key_2.png'
+        #background_color: 1, 1, 1, 1
+    Button:
+        size_hint_x: .12
+        pos_hint: {"x":.36}
+        background_normal: 'images/white_key_2.png'
+        #background_color: 1, 1, 1, 1
+    Button:
+        size_hint_x: .12
+        pos_hint: {"x":.48}
+        background_normal: 'images/white_key_2.png'
+        #background_color: 1, 1, 1, 1
+    Button:
+        size_hint_x: .12
+        pos_hint: {"x":.60}
+        background_normal: 'images/white_key_2.png'
+        #background_color: 1, 1, 1, 1
+    Button:
+        size_hint_x: .12
+        pos_hint: {"x":.72}
+        background_normal: 'images/white_key_2.png'
+        #background_color: 1, 1, 1, 1
+    Button:
+        size_hint_x: .12
+        pos_hint: {"x":.84}
+        background_normal: 'images/white_key_2.png'
+        #background_color: 1, 1, 1, 1
+
+    Button:
+        size_hint_x: .07
+        size_hint_y: .6
+        pos_hint: {"x":.07, "top":1}
+        #background_normal: ''
+        background_normal: 'images/black-key.jpg'
+        #background_color: 0, 0, 0, 1
+    Button:
+        size_hint_x: .07
+        size_hint_y: .6
+        pos_hint: {"x":.19, "top":1}
+        #background_normal: ''
+        background_normal: 'images/black-key.jpg'
+        #background_color: 0, 0, 0, 1
+
+    Button:
+        size_hint_x: .07
+        size_hint_y: .6
+        pos_hint: {"x":.43, "top":1}
+        #background_normal: ''
+        background_normal: 'images/black-key.jpg'
+        #background_color: 0, 0, 0, 1
+    Button:
+        size_hint_x: .07
+        size_hint_y: .6
+        pos_hint: {"x":.55, "top":1}
+        #background_normal: ''
+        background_normal: 'images/black-key.jpg'
+        #background_color: 0, 0, 0, 1
+    Button:
+        size_hint_x: .07
+        size_hint_y: .6
+        pos_hint: {"x":.67, "top":1}
+        #background_normal: ''
+        background_normal: 'images/black-key.jpg'
+        #background_color: 0, 0, 0, 1
+
+
+<SRLabel@Label>
+    font_name: "littledays"
+
+<Button>
+    font_name: "littledays"
+
+<MDFillRoundFlatIconButton>
+    font_name: "littledays"
+
+<MDRectangleFlatIconButton>
+    font_name: "littledays"
+
+
+<LessonScreen>
+    RelativeLayout:
+        GridLayout:
+            rows:3
+            cols:1
+            #orientation: "vertical"
+            size_hint : 1,1
+            SRLabel:
+                size_hint : 0.03,0.3
+            MusicStaff:
+                id: staff
+                note_value : "C"
+                pos_hint : {"top": 0}
+            #KeyBoardScrollView:
+            Keyboard:
+    RelativeLayout:
+        id: home_button
+        height: '50dp'  # Adjust the height as needed
+        MDFillRoundFlatIconButton:
+            icon: "home-circle"
+            text: 'Home'
+            size_hint_y: 0.04
+            size_hint_x: 0.25
+            pos_hint: {"x": 0.1, "top": 0.98}
+            #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+            on_release: root.go_to_menu()

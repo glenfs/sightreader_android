@@ -1,0 +1,176 @@
+[
+{
+"Note Name": "C2",
+"Attempted": 28,
+"Correct": 26,
+"Accuracy": "92.86%"
+},
+{
+"Note Name": "D2",
+"Attempted": 24,
+"Correct": 22,
+"Accuracy": "91.67%"
+},
+{
+"Note Name": "E2",
+"Attempted": 15,
+"Correct": 15,
+"Accuracy": "100.00%"
+},
+{
+"Note Name": "F2",
+"Attempted": 24,
+"Correct": 24,
+"Accuracy": "100.00%"
+},
+{
+"Note Name": "G2",
+"Attempted": 21,
+"Correct": 21,
+"Accuracy": "100.00%"
+},
+{
+"Note Name": "A3",
+"Attempted": 53,
+"Correct": 41,
+"Accuracy": "77.36%"
+},
+{
+"Note Name": "B3",
+"Attempted": 53,
+"Correct": 53,
+"Accuracy": "100.00%"
+},
+{
+"Note Name": "C3",
+"Attempted": 59,
+"Correct": 46,
+"Accuracy": "77.97%"
+},
+{
+"Note Name": "D3",
+"Attempted": 39,
+"Correct": 32,
+"Accuracy": "82.05%"
+},
+{
+"Note Name": "E3",
+"Attempted": 56,
+"Correct": 37,
+"Accuracy": "66.07%"
+},
+{
+"Note Name": "F3",
+"Attempted": 905,
+"Correct": 551,
+"Accuracy": "60.88%"
+},
+{
+"Note Name": "G3",
+"Attempted": 882,
+"Correct": 569,
+"Accuracy": "64.51%"
+},
+{
+"Note Name": "A4",
+"Attempted": 900,
+"Correct": 558,
+"Accuracy": "62.00%"
+},
+{
+"Note Name": "B4",
+"Attempted": 881,
+"Correct": 640,
+"Accuracy": "72.64%"
+},
+{
+"Note Name": "C4",
+"Attempted": 1091,
+"Correct": 782,
+"Accuracy": "71.68%"
+},
+{
+"Note Name": "D4",
+"Attempted": 1076,
+"Correct": 744,
+"Accuracy": "69.14%"
+},
+{
+"Note Name": "E4",
+"Attempted": 1059,
+"Correct": 723,
+"Accuracy": "68.27%"
+},
+{
+"Note Name": "F4",
+"Attempted": 1011,
+"Correct": 702,
+"Accuracy": "69.44%"
+},
+{
+"Note Name": "G4",
+"Attempted": 1009,
+"Correct": 727,
+"Accuracy": "72.05%"
+},
+{
+"Note Name": "A5",
+"Attempted": 55,
+"Correct": 40,
+"Accuracy": "72.73%"
+},
+{
+"Note Name": "B5",
+"Attempted": 73,
+"Correct": 60,
+"Accuracy": "82.19%"
+},
+{
+"Note Name": "C5",
+"Attempted": 100,
+"Correct": 91,
+"Accuracy": "91.00%"
+},
+{
+"Note Name": "D5",
+"Attempted": 77,
+"Correct": 67,
+"Accuracy": "87.01%"
+},
+{
+"Note Name": "E5",
+"Attempted": 85,
+"Correct": 69,
+"Accuracy": "81.18%"
+},
+{
+"Note Name": "F5",
+"Attempted": 61,
+"Correct": 32,
+"Accuracy": "52.46%"
+},
+{
+"Note Name": "G5",
+"Attempted": 79,
+"Correct": 74,
+"Accuracy": "93.67%"
+},
+{
+"Note Name": "A6",
+"Attempted": 80,
+"Correct": 73,
+"Accuracy": "91.25%"
+},
+{
+"Note Name": "B6",
+"Attempted": 74,
+"Correct": 65,
+"Accuracy": "87.84%"
+},
+{
+"Note Name": "C6",
+"Attempted": 76,
+"Correct": 72,
+"Accuracy": "94.74%"
+}
+]
