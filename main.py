@@ -9,12 +9,13 @@ from kivy.metrics import dp
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
-from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
+from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition, SlideTransition
 
 from kivymd.app import MDApp
 from kivymd.theming import ThemeManager
-from kivymd.uix.button import MDIconButton, MDRectangleFlatIconButton
+from kivymd.uix.button import MDIconButton, MDExtendedFabButtonIcon, MDButton, MDButtonIcon, MDButtonText
 from kivymd.uix.menu import MDDropdownMenu
+from kivymd.uix.screen import MDScreen
 
 from menu_v2 import SightReaderMenu
 from settingsscreen import SettingsScreen
@@ -41,7 +42,8 @@ class CustomDropdownMenu(MDDropdownMenu):
         self.item_height = dp(20)  # Custom item height
 
 
-class SightReaderScreen(Screen):
+class SightReaderScreen(MDScreen):
+
     def go_to_menu(self):
         app = MDApp.get_running_app()
 
@@ -54,7 +56,7 @@ class SightReaderScreen(Screen):
         app.change_palette(theme='Dark', prim_palette='Cyan')
 
 
-class SightReaderMenuScreen(Screen):
+class SightReaderMenuScreen(MDScreen):
     def on_size(self, *args):
         pass
 
@@ -64,42 +66,54 @@ class SightReaderMenuScreen(Screen):
         self.size = Window.size
 
         float_layout = FloatLayout()
-        start_button = MDRectangleFlatIconButton(
-            icon="music-note",
-            line_color=(0, 0, 0, 0),
-            text='Start',  # halign="right",
-            font_name="littledays",
-            font_size=dp(18),
-            text_color="FE5BAC",
+        start_button =  MDButton(
+            MDButtonIcon(icon="music"),
+            MDButtonText(
+                text="start",font_name="littledays",font_size=dp(22),text_color="FE5BAC", theme_font_size='Custom',theme_font_name='Custom',theme_text_color='Custom'
+            ),
+            style='text',
         )
-        start_button.pos_hint = {"center_x": 0.9, "center_y": 0.65}
+        # start_button = MDExtendedFabButtonIcon(
+        #     icon="music-note",
+        #     line_color=(0, 0, 0, 0),
+        #     text='Start',  # halign="right",
+        #     font_name="littledays",
+        #     font_size=dp(18),
+        #     text_color="FE5BAC",
+        # )
+        start_button.pos_hint = {"center_x": 0.85, "center_y": 0.5}
         start_button.size_hint = (0.1, 0.1)
         start_button.bind(on_release=self.go_to_sight_reader)
 
-        start_timer_button = MDRectangleFlatIconButton(
-            icon="music-note",
-            line_color=(0, 0, 0, 0),
-            text='Timer mode',  # halign="center",
-            font_name="littledays",
-            font_size=dp(18),
-            text_color="FE5BAC",
+        # start_timer_button = MDExtendedFabButtonIcon(
+        #     icon="music-note",
+        #     line_color=(0, 0, 0, 0),
+        #     text='Timer mode',  # halign="center",
+        #     font_name="littledays",
+        #     font_size=dp(18),
+        #     text_color="FE5BAC",
+        # )
+        start_timer_button = MDButton(
+            MDButtonIcon(icon="music"),
+            MDButtonText(
+                text="Timer mode",font_name="littledays",font_size=dp(22),text_color="FE5BAC",theme_font_size='Custom',theme_font_name='Custom',theme_text_color='Custom'
+            ),
+            style='text',
         )
-        start_timer_button.pos_hint = {"center_x": 0.9, "center_y": 0.55}
+        start_timer_button.pos_hint = {"center_x": 0.85, "center_y": 0.4}
         start_timer_button.size_hint = (0.1, 0.1)
         #start_timer_button.bind(on_release=self.go_to_sight_reader_timer_mode)
         start_timer_button.bind(on_release=self.go_countdown_screen)
 
-        float_layout.add_widget(start_button)
-        float_layout.add_widget(start_timer_button)
 
-        options_button = MDRectangleFlatIconButton(
-            icon="wrench",
-            line_color=(0, 0, 0, 0),
-            text='Advanced options',
-            font_name="littledays",
-            font_size=11,
-            text_color="FE5BAC",
-        )
+        # options_button = MDExtendedFabButtonIcon(
+        #     icon="wrench",
+        #     line_color=(0, 0, 0, 0),
+        #     text='Advanced options',
+        #     font_name="littledays",
+        #     font_size=11,
+        #     text_color="FE5BAC",
+        # )
         # options_button.pos_hint = {"center_x": 0.75, "center_y": 0.35}
         # float_layout.add_widget(options_button)
 
@@ -139,6 +153,9 @@ class SightReaderMenuScreen(Screen):
 
         self.pos_hint = {"x": 0, "y": 0.3}
         self.add_widget(main_layout)
+        float_layout.add_widget(start_button)
+        float_layout.add_widget(start_timer_button)
+
         self.add_widget(float_layout)
 
         menu_button = MDIconButton(
@@ -147,7 +164,7 @@ class SightReaderMenuScreen(Screen):
 
         )
         menu_button.pos_hint = {'x': 0.05, 'top': 0.70}
-        self.add_widget(menu_button)
+        #self.add_widget(menu_button)
 
         self.bg_music_2 = SoundLoader.load('sounds/bach-minuet.mp3')
         self.bg_music = SoundLoader.load('sounds/jazzy-161990.mp3')
@@ -170,11 +187,11 @@ class SightReaderMenuScreen(Screen):
             hor_growth='left',  # Example horizontal growth- Must be one of: ['left', 'right']
             max_height=dp(200),  # Example maximum height
             opacity=0.5,  # Example opacity
-            opening_transition='out_quad',  # Example opening transition
+            #opening_transition='out_quad',  # Example opening transition
             position='auto',  # Example position
             radius=[7, 7, 7, 7],  # Example radius
             # theme_cls=app.theme_cls,  # Example theme class
-            widget_style='ios',  # Example widget style Must be one of: ['android', 'ios', 'desktop']
+            #widget_style='ios',  # Example widget style Must be one of: ['android', 'ios', 'desktop']
         )
         print("main_layout size=" + str(main_layout.size))
         print("menu screen size=" + str(self.size))
@@ -208,6 +225,8 @@ class SightReaderMenuScreen(Screen):
         sm = self.manager
         if not (sm.has_screen('sight_reader')):
             sm.add_widget(SightReaderScreen(name='sight_reader'))
+            app.root.get_screen('sight_reader').md_bg_color = 'white'
+
         if not (sm.has_screen('end_screen')):
             sm.add_widget(EndScreen(name='end_screen'))
         if not (sm.has_screen('review_screen')):
@@ -217,7 +236,7 @@ class SightReaderMenuScreen(Screen):
         self.play_music()
         app.reset_app()
         self.manager.current = 'sight_reader'
-        app.change_palette(theme='Light', prim_palette='BlueGray')
+        app.change_palette(theme='Light', prim_palette='Aliceblue')
 
         # print(app.g_quiz_sets_current_slide)
         app.root.get_screen('sight_reader').ids.staff.notes_selection_for_sight_reader()
@@ -250,7 +269,7 @@ class SightReaderMenuScreen(Screen):
         self.play_music_timer()
         app.reset_app()
         self.manager.current = 'sight_reader_timer'
-        app.change_palette(theme='Dark', prim_palette='BlueGray')
+        app.change_palette(theme='Dark', prim_palette='Darkgoldenrod')
         app.root.get_screen('sight_reader_timer').reset_timer()
         app.root.get_screen('sight_reader_timer').ids.staff.notes_selection_for_sight_reader()
         app.root.get_screen('sight_reader_timer').ids.staff.new_game_init()
@@ -284,7 +303,7 @@ class SightReaderMenuScreen(Screen):
         self.bg_music.stop()
 
 
-class CountdownScreen(Screen):
+class CountdownScreen(MDScreen):
     def __init__(self, **kwargs):
         super(CountdownScreen, self).__init__(**kwargs)
         self.countdown_timer = 3
@@ -314,7 +333,7 @@ class CountdownScreen(Screen):
         app.root.get_screen('menu').go_to_sight_reader_timer_mode()
 
 
-class EndScreen(Screen):
+class EndScreen(MDScreen):
     quiz_sets = []
 
     def set_correct_answers(self, num_of_correct):
@@ -340,11 +359,11 @@ class EndScreen(Screen):
         app = MDApp.get_running_app()
         app.stop_bg_music()
 
-        app.change_palette(theme='Light', prim_palette='BlueGray')
+        app.change_palette(theme='Light', prim_palette='Aquamarine')
 
         # Reset the slide to 0
         app.g_quiz_sets_current_slide = 0
-
+        app.root.get_screen('review_screen').md_bg_color = 'white'
         app.root.get_screen('review_screen').ids.staff_review.init_review(app.g_quiz_sets,
                                                                           0)  # pass zero for current slide, first slide is always 0.
         # app.root.get_screen('review_screen').ids.staff_review.reset_staff_show_next()
@@ -392,7 +411,7 @@ def set_new_highscore(score):
         pass
 
 
-class EndScreenTimer(Screen):
+class EndScreenTimer(MDScreen):
     def set_correct_answers(self, num_of_correct):
         self.ids.correct_answers.text = str(num_of_correct)
 
@@ -445,7 +464,7 @@ class EndScreenTimer(Screen):
         # app.play_bg_music()
 
 
-class SightReaderEndReviewScreen(Screen):
+class SightReaderEndReviewScreen(MDScreen):
     def show_next_set(self):
         app = MDApp.get_running_app()
         app.g_quiz_sets_current_slide = app.g_quiz_sets_current_slide + 1
@@ -486,7 +505,7 @@ class SightReaderEndReviewScreen(Screen):
         app.change_palette(theme='Dark', prim_palette='Cyan')
 
 
-class SightReaderTimerScreen(Screen):
+class SightReaderTimerScreen(MDScreen):
     timer = 10  # default
 
     def __init__(self, **kwargs):
@@ -589,7 +608,7 @@ class SightReaderApp(MDApp):
     def get_difficulty(self):
         return self.difficulty_selected
 
-    def change_palette(self, theme='Dark', prim_palette='Cyan'):
+    def change_palette(self, theme='Light', prim_palette='Cyan'):
         self.theme_cls.theme_style = theme
         self.theme_cls.primary_palette = prim_palette
 
@@ -628,18 +647,22 @@ class SightReaderApp(MDApp):
         self.g_quiz_sets_current_slide = 0
         self.g_quiz_sets = None
 
+    def called(self):
+        print("tets")
+
     def build(self):
         # record start time
         #print("record start time")
         #start = time.time()
+
         self.sm = ScreenManager(transition=NoTransition())
         # Clock.max_iteration = 100
         self.icon = 'images/music.png'
         self.theme_cls = ThemeManager()
         self.theme_cls.theme_style = "Dark"  # Options: "Light" or "Dark"
-        self.theme_cls.primary_palette = "Cyan"  # Options: "Red", "Pink", "Purple", "DeepPurple", "Indigo", "Blue", "LightBlue", "Cyan", "Teal", "Green", "LightGreen", "Lime", "Yellow", "Amber", "Orange", "DeepOrange", "Brown", "Gray", "BlueGray"
+        self.theme_cls.primary_palette = "Aquamarine"  # Options: "Red", "Pink", "Purple", "DeepPurple", "Indigo", "Blue", "LightBlue", "Cyan", "Teal", "Green", "LightGreen", "Lime", "Yellow", "Amber", "Orange", "DeepOrange", "Brown", "Gray", "BlueGray"
 
-        # Builder.load_file('SightReader.kv')
+        Builder.load_file('SightReader.kv')
 
         # Register custom fonts
         LabelBase.register(name="littledays",
@@ -648,7 +671,7 @@ class SightReaderApp(MDApp):
 
         # sm.transition = MDTransitionStack()
         # Set the transition effect
-        # self.sm.transition = SlideTransition()
+        #self.sm.transition = SlideTransition()
         self.sm.add_widget((Builder.load_file("splashScreen.kv")))
         self.sm.add_widget(SightReaderMenuScreen(name='menu'))
         # sm.add_widget(SightReaderScreen(name='sight_reader'))

@@ -5,20 +5,23 @@ from kivy.core.image import Image as CoreImage
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
 from kivy.graphics import Rectangle, Line, Color
+from kivy.metrics import dp
 
-from kivy.properties import DictProperty, NumericProperty
+from kivy.properties import DictProperty, NumericProperty, BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.widget import Widget
 from kivymd.app import MDApp
 from kivymd.uix.behaviors import MagicBehavior
-from kivymd.uix.button import MDFillRoundFlatButton
+from kivymd.uix.button import MDExtendedFabButtonIcon, MDButton, MDButtonIcon, MDButtonText
 
 from SightReaderQuizSet import SightReaderQuizSet
 from animations.Button_animation import AnimationHelper
+
 from note import Note
-from kivymd.uix.snackbar import Snackbar
+from kivymd.uix.snackbar import MDSnackbar, MDSnackbarText, MDSnackbarButtonContainer, MDSnackbarActionButton, \
+    MDSnackbarActionButtonText, MDSnackbarSupportingText
 
 
 class Keyboard(BoxLayout):
@@ -238,6 +241,7 @@ class MusicStaff(Widget):
         stem_line_width = 1.2
 
         with self.canvas:
+
             Color(0, 0, 0, 0.6)  # Black color
             self.line_1 = Line(points=[0, 100, 2, 100], width=line_width)
             self.line_2 = Line(points=[0, 100, 2, 100], width=line_width)
@@ -805,39 +809,46 @@ class MusicStaff(Widget):
             t = "[color=#FF69B4][font=littledays][size=32]Ok, few slip-ups there. You got {} correct".format(
                 num_of_correct)
         else:
-            t = "[color=#FF69B4][font=littledays][size=25]Oopsie daisy!"
+            t = "[color=#FF69B4][font=littledays][size=32]Oopsie daisy!"
 
-        self.snackbar = Snackbar(
-            text=t,
-            # duration=10,
-            auto_dismiss=False,
-            font_size=35
-        )
-        self.snackbar.size_hint_y = (0.20)
-        # self.snackbar.size_hint = (0.35, 0.20)
-        # self.snackbar.pos_hint = {"center_x": 0.7, "center_y": 0.1}
         if end_flag == True:
-            self.snackbar.buttons = [
-            MDFillRoundFlatButton(
-                text="[color=#030304][font=littledays][size=18]Continue",
-                md_bg_color="4dffff",
-                on_release=self.snack_bar_dismiss_and_end_quiz,
-                size_hint=(0.45, None),
-                pos_hint={'center_x': 0.5, 'center_y': 0.5}
-            ),
-            ]
-            self.snackbar.open()
+            self.snackbar = MDSnackbar(
+                MDSnackbarSupportingText(text=t,font_size=32,pos_hint={"center_x": 0.5}),
+                MDSnackbarButtonContainer(
+                    MDSnackbarActionButton(
+                        MDSnackbarActionButtonText(
+                            text="continue", font_name = 'littledays',theme_font_name='Custom',theme_font_size='Custom',font_size=dp(22)
+                        ),on_release=self.snack_bar_dismiss_and_end_quiz, style= 'filled',theme_bg_color='Custom',md_bg_color='FE5BAC'),pos_hint={"center_y": 0.5,"center_x":0.8}),
+
+                duration=100,
+                auto_dismiss=BooleanProperty(False),
+                background_color='teal',
+                orientation="horizontal",
+            )
+            self.snackbar.size_hint_y = (0.20)
+            # self.snackbar.size_hint = (0.35, 0.20)
+            #self.snackbar.pos_hint = {"center_x": 0.7, "center_y": 0.1}
         else:
-            self.snackbar.buttons = [
-                MDFillRoundFlatButton(
-                    text="[color=#030304][font=littledays][size=18]Continue",
-                    md_bg_color="4dffff",
-                    on_release=self.snack_bar_dismiss,
-                    size_hint=(0.45, None),
-                    pos_hint={'center_x': 0.5, 'center_y': 0.5}
-                ),
-            ]
-            self.snackbar.open()
+            self.snackbar = MDSnackbar(
+                MDSnackbarSupportingText(text=t, font_size=32, pos_hint={"center_x": 0.5}),
+                MDSnackbarButtonContainer(
+                    MDSnackbarActionButton(
+                        MDSnackbarActionButtonText(
+                            text="continue", font_name='littledays', theme_font_name='Custom', theme_font_size='Custom',
+                            font_size=dp(22)
+                        ), on_release=self.snack_bar_dismiss, style='filled', theme_bg_color='Custom',
+                        md_bg_color='FE5BAC'), pos_hint={"center_y": 0.5, "center_x": 0.8}),
+
+                duration=100,
+                auto_dismiss=BooleanProperty(False),
+                background_color='teal',
+                orientation="horizontal",
+            )
+            self.snackbar.size_hint_y = (0.20)
+            # self.snackbar.size_hint = (0.35, 0.20)
+            # self.snackbar.pos_hint = {"center_x": 0.7, "center_y": 0.1}
+        self.snackbar.open()
+
 
     def snack_bar_dismiss_and_end_quiz(self,instance):
         if self.snackbar is not None:

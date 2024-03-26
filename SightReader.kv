@@ -70,18 +70,9 @@
     RelativeLayout:
         id: home_button
         height: '50dp'  # Adjust the height as needed
-        #MDFillRoundFlatIconButton:
-            #icon: "home-circle"
-            #text: 'Home'
-            #size_hint_y: 0.04
-            #size_hint_x: 0.4
-            #pos_hint: {"x": 0.1, "top": 0.98}
-            ##md_bg_color : (0.8, 0.9, 0.0, 0.4)
-            #on_release: root.go_to_menu()
         MDIconButton:
             icon: "home-circle"
             style: "filled"
-            style: "tonal"
             theme_bg_color: "Custom"
             md_bg_color: "FF69B4"
             theme_icon_color: "Custom"
@@ -140,48 +131,85 @@
             font_name: "littledays"
             font_size: '30sp'
         GridLayout:
-            spacing: 20  # Adjust the spacing between cells
-            padding: 10  # Adjust the padding around the entire grid
-            size_hint_y: .95
-            size_hint_x: .95
+            spacing: dp(35)  # Adjust the spacing between cells
+            padding: dp(10)  # Adjust the padding around the entire grid
+            size_hint_y: .5
+            size_hint_x: .5
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            rows: 3
+            rows: 2
             cols: 2
             SRLabel:
                 text: "Correct answers"
+                font_size: dp(22)
             SRLabel:
                 id: correct_answers
                 text: ""
+                font_size: dp(22)
             SRLabel:
                 text: "Incorrect answers"
+                font_size: dp(22)
             SRLabel:
                 id:wrong_answers
                 text: ""
-            MDRectangleFlatIconButton:
-                icon: "home-circle"
-                text: 'Home'
-                #size_hint_y: 0.04
-                size_hint_x: 0.12
-                #pos_hint: {"x": 0.1, "top": 0.98}
-                #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+                font_size: dp(22)
+        MDBoxLayout:
+            size_hint_x:0.6
+            orientation: 'horizontal'
+            spacing: dp(30)
+            padding: dp(10)
+            pos_hint: {'center_x':0.4, 'center_y':0.5}
+            MDButton:
+                style: "outlined"
                 on_release: root.go_to_menu()
-                text_color: "FF69B4"
-            MDRectangleFlatIconButton:
-                icon: "replay"
-                text: 'Play Again'
-                #size_hint_y: 0.04
-                size_hint_x: 0.12
-                #pos_hint: {"x": 0.1, "top": 0.98}
-                #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+                pos_hint: {'center_x': 0.4, 'center_y': 0.5}
+                MDButtonIcon:
+                    icon: "home-circle"
+                    theme_icon_color: "Custom"
+                    icon_color: "FE5BAC"
+
+                MDButtonText:
+                    text: "Home"
+                    theme_text_color: "Custom"
+                    text_color: "turquoise"
+                    theme_font_name: 'Custom'
+                    font_name: "littledays"
+                    font_size: dp(32)
+                    theme_font_size: 'Custom'
+            MDButton:
+                style: "outlined"
                 on_release: root.play_again()
-                text_color: "FF69B4"
-        MDRectangleFlatIconButton:
-            icon: "home-circle"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            text: 'Review Questions'
-            size_hint_x: 0.30
-            on_release: root.go_to_review_screen()
-            text_color: "FF69B4"
+                pos_hint: {'center_x': 0.4, 'center_y': 0.5}
+                MDButtonIcon:
+                    icon: "replay"
+                    theme_icon_color: "Custom"
+                    icon_color: "FE5BAC"
+
+
+                MDButtonText:
+                    text: "Play Again"
+                    theme_text_color: "Custom"
+                    text_color: "turquoise"
+                    theme_font_name: 'Custom'
+                    font_name: "littledays"
+                    font_size: dp(32)
+                    theme_font_size: 'Custom'
+            MDButton:
+                style: "outlined"
+                on_release: root.go_to_review_screen()
+                pos_hint: {'center_x': 0.4, 'center_y': 0.5}
+                MDButtonIcon:
+                    icon: "home-circle"
+                    theme_icon_color: "Custom"
+                    icon_color: "FE5BAC"
+
+                MDButtonText:
+                    text: "Review Questions"
+                    theme_text_color: "Custom"
+                    text_color: "turquoise"
+                    theme_font_name: 'Custom'
+                    font_name: "littledays"
+                    font_size: dp(32)
+                    theme_font_size: 'Custom'
 
 <EndScreenTimer>
     BoxLayout:
@@ -197,55 +225,81 @@
         SRLabel:
             id: result_motivation
             text: 'Great Job!!!!'
-            font_size: '20sp'
+            font_size: dp(22)
             size_hint_y: .08
         SRLabel:
             id: comments
             text: ""
             markup: True
-            font_size: '20sp'
+            font_size: dp(22)
         GridLayout:
-            spacing: 20  # Adjust the spacing between cells
-            padding: 10  # Adjust the padding around the entire grid
+            spacing: dp(35)  # Adjust the spacing between cells
+            padding: dp(10)  # Adjust the padding around the entire grid
             size_hint_y: .9
             size_hint_x: .85
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            rows: 4
+            rows: 3
             cols: 2
             SRLabel:
                 text: "Score:"
+                font_size: dp(22)
             SRLabel:
                 id: total_score
                 text: ""
+                font_size: dp(22)
 
             SRLabel:
                 text: "High Score:"
+                font_size: dp(22)
             SRLabel:
                 id: high_score
                 text: ""
+                font_size: dp(22)
             SRLabel:
                 text: "Correct answers:"
+                font_size: dp(22)
             SRLabel:
                 id: correct_answers
                 text: ""
-            MDRectangleFlatIconButton:
-                icon: "home-circle"
-                text: 'Home'
-                #size_hint_y: 0.04
-                size_hint_x: 0.12
-                #pos_hint: {"x": 0.1, "top": 0.98}
-                #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+                font_size: dp(22)
+        MDBoxLayout:
+            size_hint_x:0.6
+            orientation: 'horizontal'
+            spacing: dp(25)
+            padding: dp(10)
+            pos_hint: {'center_x':0.5, 'center_y':0.5}
+            MDButton:
+                style: "outlined"
                 on_release: root.go_to_menu()
-                text_color: "FF69B4"
-            MDRectangleFlatIconButton:
-                icon: "replay"
-                text: 'Play Again'
-                #size_hint_y: 0.04
-                size_hint_x: 0.12
-                #pos_hint: {"x": 0.1, "top": 0.98}
-                #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+                MDButtonIcon:
+                    icon: "home-circle"
+                    theme_icon_color: "Custom"
+                    icon_color: "FE5BAC"
+
+                MDButtonText:
+                    text: "Home"
+                    theme_text_color: "Custom"
+                    text_color: "turquoise"
+                    theme_font_name: 'Custom'
+                    font_name: "littledays"
+                    font_size: dp(32)
+                    theme_font_size: 'Custom'
+            MDButton:
+                style: "outlined"
                 on_release: root.play_again()
-                text_color: "FF69B4"
+                MDButtonIcon:
+                    icon: "replay"
+                    theme_icon_color: "Custom"
+                    icon_color: "FE5BAC"
+
+                MDButtonText:
+                    text: "Play Again"
+                    theme_text_color: "Custom"
+                    text_color: "turquoise"
+                    theme_font_name: 'Custom'
+                    font_name: "littledays"
+                    font_size: dp(32)
+                    theme_font_size: 'Custom'
 
 <SightReaderEndReviewScreen>
     RelativeLayout:
@@ -268,18 +322,10 @@
     RelativeLayout:
         id: home_button
         height: '50dp'  # Adjust the height as needed
-        #MDFillRoundFlatIconButton:
-            #icon: "home-circle"
-            #text: 'Home'
-            #size_hint_y: 0.04
-            #size_hint_x: 0.3
-            #pos_hint: {"x": 0.1, "top": 0.98}
-            ##md_bg_color : (0.8, 0.9, 0.0, 0.4)
-            #on_release: root.go_to_menu()
+
         MDIconButton:
             icon: "home-circle"
             style: "filled"
-            style: "tonal"
             theme_bg_color: "Custom"
             #md_bg_color:  0.6, 0.1, 0.2, 1
             md_bg_color:  "cyan"
@@ -290,39 +336,58 @@
             pos_hint: {"x": 0.90, "top": 0.98}
             #md_bg_color : (0.8, 0.9, 0.0, 0.4)
             on_release: root.go_to_menu()
+            font_size: dp(22)
+            theme_font_size: 'Custom'
 
-    #RelativeLayout:
-        #id: home_button
-        #height: '50dp'  # Adjust the height as needed
-        #MDFillRoundFlatIconButton:
-            #icon: "home-circle"
-            #text: 'Back'
-            #size_hint_y: 0.04
-            #size_hint_x: 0.3
-            #pos_hint: {"x": 0.6, "top": 0.98}
-            ##md_bg_color : (0.8, 0.9, 0.0, 0.4)
-            md_bg_color : "FF69B4"
-            #on_release: root.go_to_menu()
+
     RelativeLayout:
         height: '50dp'
-        MDFillRoundFlatIconButton:
+        MDButton:
             id: prev_review
-            icon: "arrow-left-bold"
-            text: 'Prev'
+            style: "filled"
             size_hint_y: 0.04
             size_hint_x: 0.2
             pos_hint: {"x": 0.1, "top": 0.2}
-            #md_bg_color : (0.8, 0.9, 0.0, 0.4)
+            theme_bg_color: 'Custom'
+            md_bg_color : 'brown'
             on_release: root.show_prev_set()
-        MDFillRoundFlatIconButton:
+            MDButtonIcon:
+                icon: "arrow-left-bold"
+                theme_icon_color: "Custom"
+                icon_color: "FE5BAC"
+
+            MDButtonText:
+                text: "Prev"
+                theme_text_color: "Custom"
+                text_color: "turquoise"
+                theme_font_name: 'Custom'
+                font_name: "littledays"
+                font_size: dp(32)
+                theme_font_size: 'Custom'
+
+        MDButton:
             id: next_review
-            icon: "forward"
-            text: 'Next'
+            style: "filled"
             size_hint_y: 0.04
             size_hint_x: 0.2
             pos_hint: {"x": 0.7, "top": 0.2}
-            #md_bg_color : "FF69B4"
             on_release: root.show_next_set()
+            theme_bg_color: 'Custom'
+            md_bg_color : 'brown'
+            MDButtonIcon:
+                icon: "forward"
+                theme_icon_color: "Custom"
+                icon_color: "FE5BAC"
+
+            MDButtonText:
+                text: "Next"
+                theme_text_color: "Custom"
+                text_color: "turquoise"
+                theme_font_name: 'Custom'
+                font_name: "littledays"
+                font_size: dp(32)
+                theme_font_size: 'Custom'
+
 
 <KeyboardButton>
     #on_press: app.on_button_click(self)

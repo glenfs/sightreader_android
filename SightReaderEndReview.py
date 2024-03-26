@@ -217,7 +217,10 @@ class MusicStaffReview(Widget):
         # print(slide_number)
 
         # self.clef = "Treble"
-        self.clef = self.quiz_sets[slide_number].clef
+        try:
+            self.clef = self.quiz_sets[slide_number].clef
+        except IndexError:
+            print("Index out of range. Cannot access self.notes[i]")
         # self.notes = self.quiz_sets[slide_number].notes.copy()
 
         # for i in range(0, self.NUMBER_OF_NOTES):

@@ -8,7 +8,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.label import Label
 from kivymd.app import MDApp
-from kivymd.uix.button import MDRoundFlatIconButton
+from kivymd.uix.button import MDExtendedFabButtonIcon
 from kivymd.uix.textfield import MDTextField
 import json
 
@@ -120,7 +120,7 @@ class SettingsScreen(Screen):
         float_layout = FloatLayout()
         float_layout.pos_hint = {"center_x": 0.5, "center_y": 0.5}
         # Create Home button
-        home_button = MDRoundFlatIconButton(
+        home_button = MDExtendedFabButtonIcon(
             icon="home",
             text='Home', halign="center",
             font_name="littledays"
